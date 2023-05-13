@@ -315,6 +315,7 @@ App.startTime = new Date();
  */
 App.pluginRegistry = {
 	'nowledgeable': 'plugins/nowledgeable.js',
+	'nowledgeableIO': 'plugins/parentIframeIO.js',
 	'4xAKTrabTpTzahoLthkwPNUn': 'plugins/explore.js',
 	'ex': 'plugins/explore.js', 'p1': 'plugins/p1.js',
 	'ac': 'plugins/connect.js', 'acj': 'plugins/connectJira.js',
