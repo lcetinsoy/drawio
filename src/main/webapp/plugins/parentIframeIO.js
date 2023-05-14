@@ -32,7 +32,7 @@ Draw.loadPlugin(function (ui) {
 
 
   function sendDiagramUpdate(graphXml) {
-    editorUi.editor.exportToCanvas( function (canvas, svgRoot) {
+    editorUi.exportToCanvas( function (canvas, svgRoot) {
 
       var dataUrl = canvas.toDataURL('image.png')
   
