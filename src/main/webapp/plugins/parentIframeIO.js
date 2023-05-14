@@ -5,6 +5,16 @@ Draw.loadPlugin(function(ui) {
       const codec = new mxCodec(doc);
       codec.decode(doc.documentElement, graph.getModel());
     }
+
+    const parentWindow = window.parent;
+    parentWindow.postMessage({ type: 'pluginLoaded' }, '*');
+    
+    // Écoutez le message de la fenêtre parente pour charger le graphe
+    window.addEventListener('message', function(event) {
+      if (event.data.type === 'loadGraph') {
+        loadGraphFromXml(graph, event.data.graphXml);
+      }
+    });
   
     // Fonction pour obtenir le graphe au format XML
     function getGraphXml(graph) {
@@ -17,9 +27,6 @@ Draw.loadPlugin(function(ui) {
     const graph = ui.editor.graph;
     const parentWindow = window.parent;
   
-    if (parentWindow && parentWindow.previousAnswer) {
-      loadGraphFromXml(graph, parentWindow.previousAnswer);
-    }
   
     // Ajoutez un écouteur pour envoyer le graphe modifié au parent de l'iframe après chaque modification
     graph.getModel().addListener(mxEvent.CHANGE, function() {
