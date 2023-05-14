@@ -25,8 +25,7 @@ Draw.loadPlugin(function(ui) {
   
     // Chargez le graphe à partir de la variable previousAnswer du parent
     const graph = ui.editor.graph;
-    const parentWindow = window.parent;
-  
+    
   
     // Ajoutez un écouteur pour envoyer le graphe modifié au parent de l'iframe après chaque modification
     graph.getModel().addListener(mxEvent.CHANGE, function() {
