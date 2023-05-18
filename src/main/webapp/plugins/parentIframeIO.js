@@ -7,8 +7,8 @@ Draw.loadPlugin(function (ui) {
   }
 
   const parentWindow = window.parent;
-  
-  ui.editor.on('init', function() {
+
+  ui.editor.addListener('init', function() {
 
     parentWindow.postMessage({ type: 'pluginLoaded' }, '*');
 
