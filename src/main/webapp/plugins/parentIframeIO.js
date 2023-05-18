@@ -6,15 +6,22 @@ Draw.loadPlugin(function (ui) {
     codec.decode(doc.documentElement, graph.getModel());
   }
 
-
-
   const parentWindow = window.parent;
-  parentWindow.postMessage({ type: 'pluginLoaded' }, '*');
+  
+  ui.editor.on('init', function() {
 
+    parentWindow.postMessage({ type: 'pluginLoaded' }, '*');
+
+  })
+  
   // Écoutez le message de la fenêtre parente pour charger le graphe
   window.addEventListener('message', function (event) {
     if (event.data.type === 'loadGraph') {
       loadGraphFromXml(graph, event.data.graphXml);
+    }
+
+    if (event.data.type === 'updateUi'){
+      eval('(' + event.data.strUiUpdaterFunction + ')')(ui);
     }
   });
 
